@@ -1,0 +1,179 @@
+<?xml version ='1.0'?>
+<sdf version ='1.4'>
+  <world name='default'>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="tag">
+      <link name="tag_0">
+        <inertial>
+          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+          <mass value="7.0"/>
+          <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
+        <visual name="tagv">
+          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.3</length>
+            </cylinder>
+          </geometry>
+        
+        </visual>
+        <collision name="tagc">
+          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.3</length>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+        <plugin name='libgtec_uwbpub' filename='libgtec_tag_pos_publisher_plugin.so'>
+        <update_rate>10</update_rate>
+        <nlosSoftWallWidth>0.25</nlosSoftWallWidth>
+        <z_offset>1.5</z_offset>
+        <tag_link>tag_0</tag_link>
+        <anchor_prefix>uwb_anchor</anchor_prefix>
+        <all_los>0</all_los>
+      </plugin>
+       <plugin name='random' filename='libRandomVelocityPlugin.so'>
+          <link>tag_0</link>
+          <initial_velocity>0 0.5 0</initial_velocity>
+          <velocity_factor>0.5</velocity_factor>
+          <update_period>10</update_period>
+          <min_z>0</min_z>
+          <max_z>0</max_z>
+
+       </plugin>
+      <plugin name='libgtec_uwb_plugin' filename='libgtec_uwb_plugin.so'>
+          <update_rate>10</update_rate>
+          <nlosSoftWallWidth>0.25</nlosSoftWallWidth>
+          <tag_z_offset>1.5</tag_z_offset>
+          <tag_link>tag_0</tag_link>
+          <anchor_prefix>uwb_anchor</anchor_prefix>
+          <all_los>false</all_los>
+          
+       </plugin>
+    </model>
+    <model name="uwb_anchor0">
+    <link name="uwb_anchor0">
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <mass value="0.0"/>
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+      </inertial>
+      <visual name="anchv">
+        <origin xyz="1 1 0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.3</length>
+            </cylinder>
+          </geometry>
+       
+      </visual>
+      <collision name="anchc">
+        <origin xyz="1 1 0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.3</length>
+            </cylinder>
+          </geometry>
+      </collision>
+    </link>
+    </model>
+    <model name="uwb_anchor1">
+      <link name="uwb_anchor1">
+        <inertial>
+          <origin xyz="0.5 0.5 0.0" rpy="0.0 0.0 0.0"/>
+          <mass value="7.0"/>
+          <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
+        <visual name="anchv">
+          <origin xyz="0.5 0.5 0.0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.3</length>
+            </cylinder>
+          </geometry>
+        
+        </visual>
+        <collision name="anchc">
+          <origin xyz="0.5 0.5 0.0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.3</length>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="uwb_anchor3">
+    <link name="uwb_anchor3">
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <mass value="0.0"/>
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+      </inertial>
+      <visual name="anchv">
+        <origin xyz="1 1 0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder>
+              <radius>0.1</radius>
+              <length>0.3</length>
+            </cylinder>
+        </geometry>
+       
+      </visual>
+      <collision name="anchc">
+        <origin xyz="1 1 0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder>
+              <radius>0.1</radius>
+              <length>0.3</length>
+            </cylinder>
+        </geometry>
+      </collision>
+    </link>
+    </model>
+    <model name="uwb_anchor2">
+      <link name="uwb_anchor2">
+        <inertial>
+          <origin xyz="0.5 0.5 0.0" rpy="0.0 0.0 0.0"/>
+          <mass value="7.0"/>
+          <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
+        <visual name="anchv">
+          <origin xyz="0.5 0.5 0.0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.3</length>
+            </cylinder>
+          </geometry>
+        
+        </visual>
+        <collision name="anchc">
+          <origin xyz="0.5 0.5 0.0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.3</length>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+  </world>
+</sdf>

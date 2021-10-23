@@ -1,0 +1,151 @@
+<?xml version="1.0"?> 
+<sdf version="1.4">
+  <world name="default">
+
+    <!-- Ground Plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+
+    <model name="uwb_anchor0">
+      <pose>0 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      
+
+      
+       
+    </model>    
+        <model name="uwb_anchor1">
+      <pose>0 0.5 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <link name="tag_0">
+
+        <collision name="tag_collision">
+          <origin xyz="3 3 0.0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <sphere radius="0.00000001"/>
+          </geometry>
+        </collision>
+        <visual name="tag_visual">
+          <origin xyz="7 7 0.0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <sphere radius="0.00000001"/>
+          </geometry>
+        </visual>
+      </link>
+      
+
+      
+       <plugin name='libgtec_uwb_plugin' filename='libgtec_uwb_plugin.so'>
+          <update_rate>25</update_rate>
+          <nlosSoftWallWidth>0.25</nlosSoftWallWidth>
+          <tag_z_offset>1.5</tag_z_offset>
+          <tag_link>tag_0</tag_link>
+          <anchor_prefix>uwb_anchor</anchor_prefix>
+          <all_los>false</all_los>
+          <tag_id>0</tag_id>
+       </plugin>
+    </model>      
+    <model name="uwb_anchor2">
+      <pose>0.5 0 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      
+
+      
+       <plugin name='libgtec_uwb_plugin' filename='libgtec_uwb_plugin.so'>
+          <update_rate>25</update_rate>
+          <nlosSoftWallWidth>0.25</nlosSoftWallWidth>
+          <tag_z_offset>1.5</tag_z_offset>
+          <tag_link>tag_0</tag_link>
+          <anchor_prefix>uwb_anchor</anchor_prefix>
+          <all_los>false</all_los>
+          <tag_id>0</tag_id>
+       </plugin>
+    </model>      
+        <model name="uwb_anchor3">
+      <pose>0 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      
+
+      <plugin name="modelplug" filename="libmodelplug.so"/>
+       <plugin name='libgtec_uwb_plugin' filename='libgtec_uwb_plugin.so'>
+          <update_rate>25</update_rate>
+          <nlosSoftWallWidth>0.25</nlosSoftWallWidth>
+          <tag_z_offset>1.5</tag_z_offset>
+          <tag_link>tag_0</tag_link>
+          <anchor_prefix>uwb_anchor</anchor_prefix>
+          <all_los>false</all_los>
+          
+       </plugin>
+    </model>  
+  </world>
+</sdf>

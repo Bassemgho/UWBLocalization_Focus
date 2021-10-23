@@ -1,0 +1,57 @@
+<?xml version ='1.0'?>
+<sdf version ='1.4'>
+  <world name='default'>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="uwb_anchor0">
+      <link name="uwb_link">
+        <visual name="uwb_v">
+          <geometry>
+            <box size="0.1 0.1 0.1"/>
+          </geometry>
+        </visual>
+        <collision name="uwb_c">
+          <geometry>
+            <box size="0.1 0.1 0.1"/>
+          </geometry>
+        </collision>
+      </link>
+      <link name="tag_0">
+        <visual name="tag_v">tag_v
+          <geometry>
+            <cylinder radius="0.1" length="1.0"/>
+          </geometry>
+        </visual>
+        <collision name="tag_c">
+          <geometry>
+            <cylinder radius="0.1" length="1.0"/>
+          </geometry>
+        </collision>
+      </link>
+       <plugin name='random' filename='libRandomVelocityPlugin.so'>
+          <link>tag_0</link>
+          <initial_velocity>0 0.5 0</initial_velocity>
+          <velocity_factor>0.5</velocity_factor>
+          <update_period>10</update_period>
+          <min_z>0</min_z>
+          <max_z>0</max_z>
+
+       </plugin>
+      <plugin name='libgtec_uwb_plugin' filename='libgtec_uwb_plugin.so'>
+          <update_rate>25</update_rate>
+          <nlosSoftWallWidth>0.25</nlosSoftWallWidth>
+          <tag_z_offset>1.5</tag_z_offset>
+          <tag_link>tag_0</tag_link>
+          <anchor_prefix>uwb_anchor</anchor_prefix>
+          <all_los>false</all_los>
+          
+       </plugin>
+    </model>
+  </world>
+</sdf>

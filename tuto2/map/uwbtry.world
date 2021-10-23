@@ -1,0 +1,111 @@
+<?xml version="1.0"?> 
+<sdf version="1.4">
+  <world name="default">
+
+    <!-- Ground Plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="box">
+    
+      <model name="uwb_anchor0">
+       <pose>1 0 0.5 0 0 0</pose>
+        <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>.5 .5 .5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>.5 .5 .5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      
+      </model>
+
+      <model name="uwb_anchor1">
+       <pose>0 0.5 0.5 0 0 0</pose>
+        <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>.5 .5 .5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>.5 .5 .5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      
+      </model>
+      <model name="uwb_anchor2">
+       <pose>0 0.8 1.5 0 0 0</pose>
+        <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>.5 .5 .5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>.5 .5 .5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      
+      </model>
+
+      <link name="tag_0">
+        <origin xyz="12 10 0.0"/>
+        <visual name="tag">
+          <geometry>
+            <sphere radius=".00000005"/>
+          </geometry>
+        </visual>
+      </link>
+    
+
+       <plugin name='random' filename='libRandomVelocityPlugin.so'>
+          <link>tag_0</link>
+          <initial_velocity>0 0.5 0</initial_velocity>
+          <velocity_factor>0.5</velocity_factor>
+          <update_period>10</update_period>
+          <min_z>0</min_z>
+          <max_z>0</max_z>
+
+       </plugin>
+      <plugin name='libgtec_uwb_plugin' filename='libgtec_uwb_plugin.so'>
+          <update_rate>25</update_rate>
+          <nlosSoftWallWidth>0.25</nlosSoftWallWidth>
+          <tag_z_offset>1.5</tag_z_offset>
+          <tag_link>tag_0</tag_link>
+          <anchor_prefix>uwb_anchor</anchor_prefix>
+          <all_los>false</all_los>
+          <tag_id>0</tag_id>
+       </plugin>
+    </model>        
+  </world>
+</sdf>
